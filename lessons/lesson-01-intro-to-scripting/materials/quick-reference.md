@@ -1,81 +1,6 @@
-# Scripting Quick Reference
+# Bash and Expect Scripting Quick Reference
 
-## Python Basics
-
-### Running a Python Script
-```bash
-python3 script.py
-# or make it executable
-chmod +x script.py
-./script.py
-```
-
-### Basic Python Script Structure
-```python
-#!/usr/bin/env python3
-# Description of what this script does
-
-# Import statements
-import os
-import sys
-
-# Your code here
-def main():
-    print("Hello, World!")
-
-if __name__ == "__main__":
-    main()
-```
-
-### Common Python Operations
-
-#### Working with Files
-```python
-# Read a file
-with open('file.txt', 'r') as f:
-    content = f.read()
-
-# Write to a file
-with open('output.txt', 'w') as f:
-    f.write("Hello, World!\n")
-
-# List files in directory
-import os
-files = os.listdir('.')
-for file in files:
-    print(file)
-```
-
-#### Working with Directories
-```python
-import os
-
-# Create a directory
-os.makedirs('new_folder', exist_ok=True)
-
-# Check if path exists
-if os.path.exists('file.txt'):
-    print("File exists")
-
-# Get current directory
-current_dir = os.getcwd()
-```
-
-#### String Operations
-```python
-# Concatenation
-greeting = "Hello, " + "World!"
-
-# Formatting
-name = "Alice"
-message = f"Hello, {name}!"
-
-# Split and join
-words = "hello world".split()  # ['hello', 'world']
-sentence = " ".join(words)     # 'hello world'
-```
-
-## Bash Basics
+## Bash Scripting Basics
 
 ### Running a Bash Script
 ```bash
@@ -90,36 +15,62 @@ chmod +x script.sh
 #!/bin/bash
 # Description of what this script does
 
+# Variables
+name="value"
+
 # Your commands here
 echo "Hello, World!"
 ```
 
-### Common Bash Operations
+### Variables and Command Substitution
 
-#### Variables
 ```bash
-# Set variable
+# Set variable (no spaces around =)
 name="Alice"
+age=25
+
 # Use variable
 echo "Hello, $name!"
+echo "Age: ${age}"
+
+# Command substitution
+current_dir=$(pwd)
+file_count=$(ls | wc -l)
+today=$(date +%Y-%m-%d)
+
+# Special variables
+$0    # Script name
+$1-$9 # Arguments 1-9
+$#    # Number of arguments
+$@    # All arguments
+$?    # Exit status of last command
 ```
 
-#### File Operations
+### File Operations
+
 ```bash
-# Create directory
-mkdir -p new_folder
+# Test if file exists
+if [ -f "file.txt" ]; then
+    echo "File exists"
+fi
 
-# Copy files
+# Test if directory exists
+if [ -d "directory" ]; then
+    echo "Directory exists"
+fi
+
+# Create directories
+mkdir -p path/to/directory
+mkdir -p project/{data,scripts,results}
+
+# Copy, move, delete
 cp source.txt destination.txt
-
-# Move/rename files
 mv old_name.txt new_name.txt
-
-# Delete files (be careful!)
 rm file.txt
 ```
 
-#### Loops
+### Loops
+
 ```bash
 # Loop through files
 for file in *.txt; do
@@ -130,79 +81,244 @@ done
 for i in {1..5}; do
     echo "Number $i"
 done
+
+# While loop
+count=1
+while [ $count -le 5 ]; do
+    echo "Count: $count"
+    ((count++))
+done
+
+# Read file line by line
+while IFS= read -r line; do
+    echo "Line: $line"
+done < input.txt
 ```
 
-#### Conditionals
+### Conditionals
+
 ```bash
-if [ -f "file.txt" ]; then
-    echo "File exists"
+# If statement
+if [ condition ]; then
+    # commands
+elif [ other_condition ]; then
+    # commands
 else
-    echo "File not found"
+    # commands
 fi
+
+# String comparison
+if [ "$name" = "Alice" ]; then
+    echo "Hello Alice"
+fi
+
+# Numeric comparison
+if [ $age -gt 18 ]; then
+    echo "Adult"
+fi
+# -eq equal, -ne not equal
+# -lt less than, -le less or equal
+# -gt greater than, -ge greater or equal
+
+# Case statement
+case "$choice" in
+    1) echo "Option 1" ;;
+    2) echo "Option 2" ;;
+    *) echo "Unknown" ;;
+esac
 ```
 
-## Helpful Commands
+### Functions
 
-### Navigation
 ```bash
-pwd          # Print working directory
-ls           # List files
-ls -la       # List files with details
-cd folder    # Change directory
-cd ..        # Go up one directory
-cd ~         # Go to home directory
+# Define function
+function greet() {
+    local name=$1
+    echo "Hello, $name!"
+}
+
+# Call function
+greet "Alice"
 ```
 
-### File Inspection
+### Input/Output
+
 ```bash
-cat file.txt       # Display file contents
-head file.txt      # Show first 10 lines
-tail file.txt      # Show last 10 lines
-wc -l file.txt     # Count lines
+# Read user input
+read -p "Enter your name: " name
+
+# Redirect output to file
+echo "Hello" > output.txt    # overwrite
+echo "World" >> output.txt   # append
+
+# Redirect errors
+command 2> errors.txt
+command > output.txt 2>&1    # both stdout and stderr
 ```
 
-### Getting Help
+## Expect Scripting Basics
+
+### Running an Expect Script
 ```bash
-python3 --help     # Python help
-man bash          # Bash manual
-command --help    # Help for specific command
+expect script.exp
+# or make executable
+chmod +x script.exp
+./script.exp
 ```
 
-## Debugging Tips
+### Basic Expect Script Structure
+```expect
+#!/usr/bin/expect -f
+# Description
 
-1. **Use print statements** to see what's happening
-   ```python
-   print(f"Variable x is: {x}")
-   ```
+# Set timeout (seconds)
+set timeout 30
 
-2. **Check your paths**
-   ```python
-   import os
-   print(os.getcwd())  # Where am I?
-   ```
+# Spawn interactive program
+spawn program_name
 
-3. **Read error messages carefully** - they usually tell you exactly what's wrong
+# Expect patterns and send responses
+expect "prompt:"
+send "response\r"
 
-4. **Test with simple data first** before running on all your files
+# Wait for program to finish
+expect eof
+```
 
-5. **Comment out sections** to isolate problems
-   ```python
-   # print("This won't run")
-   ```
+### Common Expect Commands
+
+```expect
+# Spawn a program
+spawn ssh user@hostname
+spawn ./interactive_program
+
+# Wait for and respond to prompts
+expect "Password:"
+send "mypassword\r"
+
+# Multiple patterns
+expect {
+    "yes/no" { send "yes\r"; exp_continue }
+    "Password:" { send "$password\r" }
+    timeout { puts "Timeout!"; exit 1 }
+}
+
+# Variables
+set username "alice"
+set password "secret123"
+
+# Command line arguments
+set username [lindex $argv 0]
+```
+
+### Example: Automate SSH Login
+```expect
+#!/usr/bin/expect -f
+
+set timeout 20
+set hostname [lindex $argv 0]
+set username [lindex $argv 1]
+set password [lindex $argv 2]
+
+spawn ssh $username@$hostname
+
+expect {
+    "yes/no" {
+        send "yes\r"
+        exp_continue
+    }
+    "assword:" {
+        send "$password\r"
+    }
+}
+
+expect "$"
+send "ls -la\r"
+
+expect "$"
+send "exit\r"
+
+expect eof
+```
+
+## Debugging
+
+### Bash
+```bash
+# Run with debug output
+bash -x script.sh
+
+# In script
+set -x  # Enable debugging
+set +x  # Disable debugging
+
+# Exit on error
+set -e
+
+# Exit on undefined variable
+set -u
+```
+
+### Expect
+```expect
+# Enable diagnostic output
+exp_internal 1
+
+# Log interactions
+log_file interaction.log
+```
 
 ## Best Practices
 
-- ✅ Use descriptive variable names
-- ✅ Add comments to explain why, not what
-- ✅ Test scripts on sample data first
-- ✅ Back up important files before running scripts
-- ✅ Use version control (Git) for your scripts
-- ❌ Don't hardcode paths (use variables)
-- ❌ Don't skip error handling for critical operations
-- ❌ Don't forget to document your scripts
+### Bash
+- ✅ Quote variables: `"$var"` not `$var`
+- ✅ Use `#!/bin/bash` for bash features
+- ✅ Check file existence before operations
+- ✅ Use meaningful variable names
+- ✅ Add comments for complex logic
+- ❌ Don't parse `ls` output (use globs)
+
+### Expect
+- ✅ Set appropriate timeouts
+- ✅ Handle multiple possible responses
+- ✅ Don't hardcode passwords
+- ✅ Use `expect eof` to wait for completion
+- ❌ Don't use for non-interactive programs
+
+## Common Patterns
+
+### Process all files in directory
+```bash
+for file in /path/*.txt; do
+    if [ -f "$file" ]; then
+        echo "Processing: $file"
+        # do something
+    fi
+done
+```
+
+### Command with error handling
+```bash
+if command; then
+    echo "Success"
+else
+    echo "Failed: $?"
+    exit 1
+fi
+```
+
+### String replacement
+```bash
+# Replace first occurrence
+echo ${string/old/new}
+
+# Replace all occurrences
+echo ${string//old/new}
+```
 
 ## Resources
 
-- **Python**: https://docs.python.org/3/
-- **Bash**: https://www.gnu.org/software/bash/manual/
-- **Stack Overflow**: https://stackoverflow.com/ (for troubleshooting)
+- **Bash Manual**: https://www.gnu.org/software/bash/manual/
+- **Advanced Bash-Scripting**: https://tldp.org/LDP/abs/html/
+- **Expect Documentation**: https://core.tcl-lang.org/expect/index
+- **ShellCheck**: https://www.shellcheck.net/ (script checker)

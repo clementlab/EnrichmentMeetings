@@ -49,9 +49,11 @@ By the end of this lesson, you will be able to:
 
 ## Materials Included
 
-- **Reference sheet** (`materials/quick-reference.md`) - Common commands and syntax
-- **Working examples** (`examples/`) - Demonstrated scripts
-- **Starter files** (`starter/`) - Files for hands-on exercises
+- **Bash Cheat Sheet** (`materials/bash-cheat-sheet.md`) - Quick reference with basics like shebangs, input, and common patterns
+- **Quick Reference Guide** (`materials/quick-reference.md`) - Comprehensive bash and expect syntax guide
+- **Working examples** (`examples/`) - Five demonstration scripts (4 bash + 1 expect)
+- **Starter files** (`starter/`) - Three exercise templates for hands-on practice
+- **Sample data** (`starter/sample_data.csv`) - Test data for exercises
 - **Presentation slides** (add your own to `materials/`) - Overview and examples
 
 ## Hands-On Exercises
