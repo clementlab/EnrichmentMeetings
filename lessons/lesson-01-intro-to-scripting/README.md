@@ -49,10 +49,10 @@ By the end of this lesson, you will be able to:
 
 ## Materials Included
 
-- **Presentation slides** (`materials/slides.pdf`) - Overview and examples
 - **Reference sheet** (`materials/quick-reference.md`) - Common commands and syntax
 - **Working examples** (`examples/`) - Demonstrated scripts
 - **Starter files** (`starter/`) - Files for hands-on exercises
+- **Presentation slides** (add your own to `materials/`) - Overview and examples
 
 ## Hands-On Exercises
 

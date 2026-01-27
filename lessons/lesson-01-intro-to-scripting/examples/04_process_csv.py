@@ -65,6 +65,7 @@ def process_csv(input_file, output_file):
 
 def main():
     # Process a sample CSV file
+    # Note: sample_data.csv can be found in the starter/ directory
     process_csv("sample_data.csv", "summary.txt")
 
 if __name__ == "__main__":

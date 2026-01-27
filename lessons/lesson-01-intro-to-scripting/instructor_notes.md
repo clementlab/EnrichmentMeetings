@@ -1,5 +1,7 @@
 # Instructor Notes: Intro to Scripting
 
+> **Note for Instructors:** Use the checklists below to prepare for your session. Check off items as you complete them.
+
 ## Preparation (Before the Session)
 
 ### Setup

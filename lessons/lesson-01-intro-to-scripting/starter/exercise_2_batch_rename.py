@@ -41,9 +41,9 @@ def rename_files(pattern, old_text, new_text, dry_run=True):
 def main():
     # TODO: Modify these parameters for your use case
     rename_files(
-        pattern="*.txt",      # Files to match
-        old_text="old",       # Text to replace
-        new_text="new",       # Replacement text
+        pattern="test_*.txt", # Files to match
+        old_text="test",      # Text to replace
+        new_text="sample",    # Replacement text
         dry_run=True          # Preview mode
     )
 
