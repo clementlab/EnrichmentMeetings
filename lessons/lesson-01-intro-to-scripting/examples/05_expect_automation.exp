@@ -1,0 +1,64 @@
+#!/usr/bin/expect -f
+# Example 5: Expect Script for Interactive Automation
+#
+# This script demonstrates how to automate interactive programs using expect.
+# It simulates automating an interactive user registration process.
+# Demonstrates:
+# - Basic expect syntax
+# - Sending responses to prompts
+# - Pattern matching with expect
+# - Handling multiple prompts
+
+# Set timeout for expect commands (in seconds)
+set timeout 30
+
+# Start an interactive bash script (this simulates any interactive program)
+spawn bash -c {
+cat << 'SCRIPT'
+#!/bin/bash
+echo "Welcome to the Interactive Setup!"
+echo ""
+
+read -p "Enter your name: " name
+read -p "Enter your email: " email
+read -p "Enter your department: " dept
+
+echo ""
+echo "Please confirm the following information:"
+echo "Name: $name"
+echo "Email: $email"
+echo "Department: $dept"
+read -p "Is this correct? (yes/no): " confirm
+
+if [ "$confirm" = "yes" ]; then
+    echo ""
+    echo "✅ Registration complete! Welcome, $name!"
+else
+    echo ""
+    echo "Registration cancelled."
+fi
+SCRIPT
+bash
+}
+
+# Expect the first prompt and send response
+expect "Enter your name:"
+send "Dr. Alice Smith\r"
+
+# Expect the email prompt and send response
+expect "Enter your email:"
+send "alice.smith@university.edu\r"
+
+# Expect the department prompt and send response
+expect "Enter your department:"
+send "Biology\r"
+
+# Expect the confirmation prompt and send response
+expect "Is this correct?"
+send "yes\r"
+
+# Wait for the script to complete
+expect eof
+
+# Print completion message
+puts "\n=== Expect script completed successfully! ==="
