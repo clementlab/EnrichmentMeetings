@@ -167,41 +167,24 @@ chmod +x script.sh
 ./script.sh
 ```
 
-## Debugging
-
-```bash
-# Run script with debug output
-bash -x script.sh
-
-# Add debugging to part of script
-set -x  # Turn on debugging
-# ... your commands ...
-set +x  # Turn off debugging
-```
-
-## Best Practices
-
-1. **Always quote variables**: Use `"$var"` not `$var`
-2. **Check before you delete**: Use `rm -i` for important files
-3. **Test scripts with sample data** before running on real data
-4. **Add comments** to explain what your script does
-5. **Use meaningful variable names**: `filename` not `f`
-
 ## Common Mistakes to Avoid
 
 ❌ Spaces around `=` in variable assignment:
+
 ```bash
 name = "Alice"  # WRONG
 name="Alice"    # CORRECT
 ```
 
 ❌ Forgetting to quote variables:
+
 ```bash
 if [ $name = "Alice" ]; then  # Can break if name has spaces
 if [ "$name" = "Alice" ]; then  # CORRECT
 ```
 
 ❌ Using `;` instead of `then` on same line:
+
 ```bash
 if [ condition ]; then  # CORRECT
 ```
@@ -209,6 +192,7 @@ if [ condition ]; then  # CORRECT
 ## Quick Examples
 
 ### Example 1: Rename all .txt files to .md
+
 ```bash
 #!/bin/bash
 for file in *.txt; do
@@ -217,6 +201,7 @@ done
 ```
 
 ### Example 2: Back up files with timestamp
+
 ```bash
 #!/bin/bash
 timestamp=$(date +%Y%m%d_%H%M%S)
@@ -224,6 +209,7 @@ cp important.txt "important_$timestamp.txt"
 ```
 
 ### Example 3: Process files in a directory
+
 ```bash
 #!/bin/bash
 for file in /path/to/files/*; do
@@ -236,6 +222,6 @@ done
 
 ## Resources
 
-- **Test your scripts**: https://www.shellcheck.net/
+- **Test your scripts**: <https://www.shellcheck.net/>
 - **Bash manual**: `man bash` in terminal
-- **More examples**: https://tldp.org/LDP/abs/html/
+- **More examples**: <https://tldp.org/LDP/abs/html/>

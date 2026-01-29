@@ -1,0 +1,5 @@
+2026-01-28 12:11:35 [INFO] logs/project1/tool1 - This is a sample log message
+2026-01-28 12:11:38 [WARN] logs/project1/tool1 - This is a sample log message
+2026-01-28 12:11:42 [ERROR] logs/project1/tool1 - This is a sample log message
+2026-01-28 12:11:57 [INFO] logs/project1/tool1 - This is a sample log message
+2026-01-28 12:12:01 [INFO] logs/project1/tool1 - This is a sample log message

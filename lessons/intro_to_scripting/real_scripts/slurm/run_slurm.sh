@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# This is the directory where the log files will be stored
 SCRDIR=/scratch/general/vast/$USER/slurm_jobs/
 mkdir -p "$SCRDIR"
 cd "$SCRDIR"
