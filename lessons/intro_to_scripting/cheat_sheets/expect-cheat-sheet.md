@@ -5,11 +5,13 @@
 Expect is a scripting language used to **automate interactive programs**.
 
 It works by:
+
 - Running a program
 - Waiting for specific output
 - Sending responses automatically
 
 Common uses:
+
 - Login prompts
 - Password requests
 - Menus
@@ -161,11 +163,13 @@ chmod +x run_expect.exp
 ## Common Mistakes to Avoid
 
 ❌ Forgetting `\r`:
+
 ```tcl
 send "yes"
 ```
 
 ✔ Correct:
+
 ```tcl
 send "yes\r"
 ```
@@ -178,6 +182,7 @@ send "yes\r"
 ## Simple Example
 
 ### Interactive Program
+
 ```bash
 echo -n "What is your name? "
 read NAME
@@ -185,6 +190,7 @@ echo "Hello $NAME"
 ```
 
 ### Expect Script
+
 ```tcl
 #!/usr/bin/expect
 
@@ -213,5 +219,5 @@ expect eof
 ## Resources
 
 - `man expect`
-- https://linux.die.net/man/1/expect
+- <https://linux.die.net/man/1/expect>
 - Stack Overflow
