@@ -14,7 +14,7 @@ Each lesson is organized in its own directory under `lessons/`.
 
 Have an idea for a new workshop topic? Feel free to:
 
-1. Create \a new lesson directory following the structure above
+1. Create a new lesson directory 
 2. Include clear objectives and beginner-friendly explanations
 3. Provide hands-on exercises and examples
 
