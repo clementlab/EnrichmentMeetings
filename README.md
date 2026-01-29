@@ -17,7 +17,6 @@ Have an idea for a new workshop topic? Feel free to:
 1. Create \a new lesson directory following the structure above
 2. Include clear objectives and beginner-friendly explanations
 3. Provide hands-on exercises and examples
-4. Submit a pull request!
 
 ## Lessons
 
