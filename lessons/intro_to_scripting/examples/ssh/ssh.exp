@@ -9,15 +9,15 @@ spawn ssh -o ConnectTimeout=$timeout $user@$host
 
 expect {
     "The authenticity of host '$host (" {
-        send "yes\n";
+        send "yes\r";
         exp_continue;
     }
     "*?assword:*" {
-        send "$password\n";
+        send "$password\r";
         exp_continue;
     }
     "Duo two-factor login*" {
-        send "1\n";
+        send "1\r";
     }
     timeout {
         puts "Connection timed out."
