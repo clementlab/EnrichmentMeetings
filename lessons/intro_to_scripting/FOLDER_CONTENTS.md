@@ -140,7 +140,7 @@ Real-world scripts used in production or research environments.
 **Files:**
 - `request_gpu.sh` - Script to request GPU resources
 - `ssh.exp` - SSH automation expect script
-- `update_envionment_yaml.sh` - Script to update environment YAML files
+- `update_environment_yaml.sh` - Script to update environment YAML files
 - `watch_logs.sh` - Log monitoring script
 
 #### `real_scripts/slurm/`
