@@ -20,4 +20,4 @@ Have an idea for a new workshop topic? Feel free to:
 
 ## Lessons
 
-- [Intro to Scripting](lessons/intro-to-scripting/)
+- [Intro to Scripting](lessons/intro_to_scripting/)
